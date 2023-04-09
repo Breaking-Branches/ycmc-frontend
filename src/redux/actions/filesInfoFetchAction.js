@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function addFilesInfo(data) {
+export function fetchFilesInfo(data) {
 
     return {
         type:"Fetch",

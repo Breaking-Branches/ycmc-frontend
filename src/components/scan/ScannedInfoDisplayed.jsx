@@ -48,7 +48,6 @@ export default function ScannedInfoDisplayed() {
 
                     <div className='flex'>
 
-
                         <div>
                             <div className='flex mt-4'>
                                 <p className='mr-1 font-bold'>Total Checked: </p>

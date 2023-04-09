@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div>
 
-    <Hero></Hero>
+    <Hero des="Wanna See code similarity between two github repo ?, YCMC is a tool which checks code similarity between two repo files" ></Hero>
     <ScanHomePage></ScanHomePage>
     <Footer></Footer>
 

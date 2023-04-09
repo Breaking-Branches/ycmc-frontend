@@ -1,4 +1,5 @@
 import React from 'react'
+import {ADD_ALL,REMOVE,REMOVE_ALL,FETCH} from '../constants/fileInfoConstant'
 initial_state = {}
 
 
@@ -6,15 +7,17 @@ export default function filesInfoReducer(state=initial_state,action) {
 
     switch(action.type){
 
-        case "Fetch":
-            return data
+        case FETCH:
+            return action.payload
 
-        case "Remove":
+        case REMOVE:
             
-        case "Remove_All":
+        case REMOVE_ALL:
         
-        case "Add_All":
+        case ADD_ALL:
         
+        default:
+            return state
         
     }
 
