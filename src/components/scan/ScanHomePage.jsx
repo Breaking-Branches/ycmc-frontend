@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
 import RepoURLInput from './RepoURLInput'
 import ScanResult from './ScanResult'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 
 // make whole cloud like in coc
@@ -13,15 +15,31 @@ export default function ScanHomePage() {
 
   const fetchFiles = async (e) => {
 
+    try{
    const response = await axios({
       method: 'post',
       url: 'http://127.0.0.1:8000/files',
       data:{
         repo1_url: url1,
         repo2_url: url2
-    }
+      }
     })
+  
     console.log(response.data)
+  }
+    catch(e){
+      toast.warn(e.response.data.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
+    }
 
 
 
@@ -33,6 +51,7 @@ export default function ScanHomePage() {
 
   return (
     <div className='flex mt-[40px] mb-12 justify-center'>
+         <ToastContainer />
       <div className='w-[98%]  flex flex-col p-4'>
 
         <div className='flex'>
