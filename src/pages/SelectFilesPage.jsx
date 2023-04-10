@@ -2,8 +2,12 @@ import React from 'react'
 import ScanResult from '../components/scan/ScanResult'
 import Hero from '../components/home/Hero'
 import Footer from '../components/home/Footer'
+import {useDispatch,useSelector} from 'react-redux'
 
 export default function SelectFilesPage() {
+  const dispatch = useDispatch();
+  const filesInfo = useSelector((state)=>state.filesInfoReducer);
+  console.log(filesInfo)
   return (
     <div className=''>
 

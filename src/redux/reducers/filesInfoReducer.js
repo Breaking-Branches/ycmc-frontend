@@ -1,20 +1,16 @@
 import React from 'react'
-import {ADD_ALL,REMOVE,REMOVE_ALL,FETCH} from '../constants/fileInfoConstant'
-initial_state = {}
+import {ADD_ALL,REMOVE,REMOVE_ALL,FETCH,ERROR} from '../constants/fileInfoConstant'
+const initial_state = {}
 
-
-export default function filesInfoReducer(state=initial_state,action) {
+export function filesInfoReducer(state=initial_state,action) {
 
     switch(action.type){
 
         case FETCH:
             return action.payload
-
-        case REMOVE:
-            
-        case REMOVE_ALL:
         
-        case ADD_ALL:
+        case ERROR:
+            return action.payload
         
         default:
             return state

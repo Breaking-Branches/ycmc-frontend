@@ -1,9 +1,9 @@
 import React from 'react'
 
-export function fetchFilesInfo(data) {
+export function filesInfoFetchAction(data) {
 
     return {
-        type:"Fetch",
+        type:"FETCH",
         payload:data
     }
 
