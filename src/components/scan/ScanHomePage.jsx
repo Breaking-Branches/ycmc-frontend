@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import RepoURLInput from './RepoURLInput'
-import ScanResult from './ScanResult'
 import { filesInfoFetchAction } from '../../redux/actions/filesInfoFetchAction'
 import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import { Navigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
@@ -14,15 +13,12 @@ import Loader from '../loader/Loader';
 
 export default function ScanHomePage() {
   const dispatch = useDispatch();
-  const filesInfo = useSelector((state) => state.filesInfoReducer);
   const [url1, setURL1] = useState('')
   const [url2, setURL2] = useState('')
+  const [sucess,setSucess] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  
-  useEffect(() => {
-    console.log(filesInfo)
-  }, [filesInfo])
 
+  
   const fetchFiles = async (e) => {
     setLoading(true)
     try {
@@ -36,6 +32,7 @@ export default function ScanHomePage() {
       })
       setLoading(false)
       await dispatch(filesInfoFetchAction(response.data))
+      setSucess(true)
 
     }
     catch (e) {
@@ -52,11 +49,14 @@ export default function ScanHomePage() {
       });
 
     }
-
   };
 
   const setRepoURL = (repo, value) => {
     repo === "repo1" ? setURL1(value) : setURL2(value)
+  }
+
+  if(sucess){
+    return (<Navigate to="/select"/>)
   }
 
   return (
@@ -65,6 +65,7 @@ export default function ScanHomePage() {
         isLoading ?
           <Loader loading={isLoading}></Loader>
           :
+
           <div className='flex mt-[40px] mb-12 justify-center'>
 
             <ToastContainer />
@@ -78,19 +79,15 @@ export default function ScanHomePage() {
               <div className='flex justify-center'>
 
                 <button className='bg-[#6D4AFF] text-white text-xl flex items-center px-5 py-2 font-bold rounded w-fit' onClick={fetchFiles} ><AiOutlineSearch className='mr-1' size={30} /> Start Scanning</button>
-
               </div>
+            
+  
 
-              {/* <div className='flex'>
-
-          <ScanResult></ScanResult>
-          <ScanResult></ScanResult>
-
-        </div> */}
-
-            </div>
+         </div>
           </div>
+         
       }
+
 
     </>
 

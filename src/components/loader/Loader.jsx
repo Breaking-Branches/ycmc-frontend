@@ -2,6 +2,10 @@ import React from 'react'
 import RingLoader from "react-spinners/RingLoader";
 
 export default function Loader(props) {
+
+
+
+
   return (
 
     <div className='absolute h-screen border top-0 flex flex-col justify-center items-center bg-white w-screen z-50'>
