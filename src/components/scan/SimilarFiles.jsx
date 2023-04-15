@@ -10,11 +10,11 @@ export default function SimilarFiles() {
 
         <div className='w-[50%] mr-10'>
 
-          <RepoProfile></RepoProfile>
+          <RepoProfile reponame={"sankalpa/acharya"}></RepoProfile>
         </div>
         <div className='w-[50%]'>
 
-          <RepoProfile></RepoProfile>
+          <RepoProfile reponame={"sankalpa/acharya"}></RepoProfile>
         </div>
 
       </div>

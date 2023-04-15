@@ -1,5 +1,4 @@
-import React from 'react'
-import {ADD_ALL,REMOVE,REMOVE_ALL,FETCH,ERROR} from '../constants/fileInfoConstant'
+import {CHANGE,FETCH,ADD} from '../constants/fileInfoConstant'
 const initial_state = {}
 
 export function filesInfoReducer(state=initial_state,action) {
@@ -9,8 +8,13 @@ export function filesInfoReducer(state=initial_state,action) {
         case FETCH:
             return action.payload
         
-        case ERROR:
+        case ADD:
             return action.payload
+        
+        case CHANGE:
+            const payload = action.payload
+            state[payload.reponame][payload.extension] = payload.data
+            return state
         
         default:
             return state

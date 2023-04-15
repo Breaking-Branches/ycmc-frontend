@@ -1,28 +1,25 @@
 import React from 'react'
-import ScanResult from '../components/scan/ScanResult'
-import Hero from '../components/home/Hero'
+import ScannedFilesInfoContainer from '../components/scan/ScannedFilesInfoContainer'
+import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import { Navigate } from 'react-router-dom';
-import {useDispatch,useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 export default function SelectFilesPage() {
-  const dispatch = useDispatch();
   const filesInfo = useSelector((state)=>state.filesInfoReducer);
-  console.log(filesInfo)
- 
-
-  if (Object.keys(filesInfo).length==0){
+  const repo1 = Object.keys(filesInfo)[0]
+  const repo2 = Object.keys(filesInfo)[1]
+  console.log('selectFilePage')
+  if (Object.keys(filesInfo).length===0){
       return (<Navigate to="/"/>)
   }
 
   return (
     <div className=''>
-
-        <Hero  des="Select files of which you wanna detect Similarities"></Hero>
+        <NavBar></NavBar>
         <div className='flex mt-10'>
-
-            <ScanResult></ScanResult>
-            <ScanResult></ScanResult>
+            <ScannedFilesInfoContainer  reponame={repo1}></ScannedFilesInfoContainer>
+            <ScannedFilesInfoContainer reponame={repo2}></ScannedFilesInfoContainer>
         </div>
     <Footer></Footer>
     </div>
