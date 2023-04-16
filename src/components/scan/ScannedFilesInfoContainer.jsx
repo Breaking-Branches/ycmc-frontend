@@ -13,7 +13,7 @@ export default function ScannedFilesInfoContainer(props) {
         {
           Object.keys(filesInfo).sort().map((ex) => {
             return (
-              <FileInfo SelectedFiles={props.SelectedFiles} setFiles={props.setFiles} extension={ex} key={Math.random()} reponame={props.reponame} ></FileInfo>
+              <FileInfo send={props.send} extension={ex} key={Math.random()} reponame={props.reponame} ></FileInfo>
             )
           })
         }

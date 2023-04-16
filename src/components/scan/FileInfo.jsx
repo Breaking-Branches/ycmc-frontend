@@ -1,17 +1,29 @@
-import { useState,useEffect } from 'react'
+import {useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import extensionIcon from '../../helper/extensionIcon'
 import { AiOutlineRight, AiOutlineDown } from 'react-icons/ai'
 import { Change } from '../../redux/actions/filesInfoFetchAction'
+// import {cloneDeep} from 'loadash';
 export default function FileInfo(props) {
 
   const [acc, setAcc] = useState(true);
   const dispatch = useDispatch()
   const filesInfo = useSelector((state) => state.filesInfoReducer)[props.reponame][props.extension];
+  // const test = cloneDeep(filesInfo)
   const demoData = (() => { const d = []; for (const i of filesInfo) { d.push({ 'name': i }) }; return d })()
   const [files,setFiles] = useState(demoData);
   const [fileNo,setFileNo] = useState(filesInfo.length)
   const { name, icon } = extensionIcon(props.extension)
+  const getFiles = (f)=>{
+    const arr = []
+      f.map((file)=>{
+       if(file.isChecked){
+         arr.push(file.name)
+       }
+       return file
+     })
+     return arr
+  }
   const handleChange = (e) => {
     const {name,checked} = e.target
     if(name==='selectall'){
@@ -21,31 +33,27 @@ export default function FileInfo(props) {
         return {...file,isChecked:checked}
       })
       setFiles(tempFile)
+      if(props.send){
+        dispatch(Change([props.reponame,props.extension,getFiles(tempFile)]))
+      }
     }
     else{
-    const tempFile = files.map(
-      (file)=>{
-        if (file.name===name){
-          return {...file,isChecked:checked}
+      const tempFile = files.map(
+        (file)=>{
+          if (file.name===name){
+            return {...file,isChecked:checked}
+          }
+          return file
         }
-        return file
-      }
-      )
-      setFiles(tempFile)
-    }
-  
-    }
-    useEffect(()=>{
-      const arr = []
-      files.map((file)=>{
-       if(file.isChecked){
-         arr.push(file.name)
-       }
-       return file
-     })
-     dispatch(Change([props.reponame,props.extension,arr]))
-    },[files,dispatch,props.reponame,props.extension])
+        )
+        setFiles(tempFile)
+        if(props.send){
+          dispatch(Change([props.reponame,props.extension,getFiles(tempFile)]))
+        }
 
+    }
+
+  }
 
   return (
     <div className={`mt-5 shadow-lg  transition-all   overflow-hidden border`}>
