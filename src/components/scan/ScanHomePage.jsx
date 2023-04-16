@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import RepoURLInput from './RepoURLInput'
 import { filesInfoFetchAction } from '../../redux/actions/filesInfoFetchAction'
+import { initialSetup } from '../../redux/actions/selectedFileInfoAction'
 import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch} from 'react-redux'
 import { Navigate } from 'react-router-dom';
@@ -31,7 +32,9 @@ export default function ScanHomePage() {
         }
       })
       setLoading(false)
-      await dispatch(filesInfoFetchAction(response.data))
+      const data = await response.data
+      dispatch(filesInfoFetchAction(data))
+      dispatch(initialSetup(data))
       setSucess(true)
 
     }

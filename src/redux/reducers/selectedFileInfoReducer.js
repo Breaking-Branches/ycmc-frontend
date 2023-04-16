@@ -1,29 +1,31 @@
-import {CHANGE,FETCH,ADD} from '../constants/fileInfoConstant'
+import {UPDATE_FILES,INITIAL_SETUP} from '../constants/fileInfoConstant'
 const initial_state = {}
 
-export function filesInfoReducer(state=initial_state,action) {
+export function selectedFileInfoReducer(state=initial_state,action) {
 
     switch(action.type){
-
-        case FETCH:
-            return action.payload
-        
-        case ADD:
-            return action.payload
-        
-        case CHANGE:
-            const { reponame, extension, data } = action.payload;
-            return {
-                ...state,
-                [reponame]: {
-                  ...state[reponame],
-                  [extension]: data
+        case INITIAL_SETUP:
+            console.log('initial reducer')
+            const repo1 = Object.keys(action.payload)[0]
+            const repo2 = Object.keys(action.payload)[1]
+            return {[repo1]:{},[repo2]:{}}
+            
+            case UPDATE_FILES:
+            console.log('update reducer')
+            const {reponame,extension,data} = action.payload
+            const sank = {
+                ...state,   
+                [reponame]:{
+                    ...state[reponame],
+                    [extension]:data
                 }
-              };
-        
+            } 
+            console.log(sank)
+            return sank
+
         default:
             return state
-        
     }
+
 
 }

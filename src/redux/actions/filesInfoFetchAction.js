@@ -1,4 +1,4 @@
-import {FETCH,CHANGE} from '../constants/fileInfoConstant'
+import {FETCH} from '../constants/fileInfoConstant'
 export function filesInfoFetchAction(data) {
 
     return {
@@ -7,15 +7,3 @@ export function filesInfoFetchAction(data) {
     }
 
 }
-export function Change(data) {
-    const [reponame,extension,arr] = data
-    return {
-        type:CHANGE,
-        payload:{
-            reponame:reponame,
-            extension:extension,
-            data:arr
-        }
-    }
-}
-
