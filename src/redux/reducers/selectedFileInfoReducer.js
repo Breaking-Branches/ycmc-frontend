@@ -5,13 +5,11 @@ export function selectedFileInfoReducer(state=initial_state,action) {
 
     switch(action.type){
         case INITIAL_SETUP:
-            console.log('initial reducer')
             const repo1 = Object.keys(action.payload)[0]
             const repo2 = Object.keys(action.payload)[1]
             return {[repo1]:{},[repo2]:{}}
             
             case UPDATE_FILES:
-            console.log('update reducer')
             const {reponame,extension,data} = action.payload
             const sank = {
                 ...state,   
@@ -20,7 +18,6 @@ export function selectedFileInfoReducer(state=initial_state,action) {
                     [extension]:data
                 }
             } 
-            console.log(sank)
             return sank
 
         default:

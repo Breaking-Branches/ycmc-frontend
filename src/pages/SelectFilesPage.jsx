@@ -4,26 +4,25 @@ import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import { Navigate } from 'react-router-dom';
 import {useSelector} from 'react-redux'
+import GetSimilaritiesButton  from '../components/buttons/GetSimilaritiesButton'
 
 export default function SelectFilesPage() {
   const filesInfo = useSelector((state)=>state.filesInfoReducer);
-  const test = useSelector((state)=>state.selectedFileInfoReducer);
   const repo1 = Object.keys(filesInfo)[0]
   const repo2 = Object.keys(filesInfo)[1]
   console.log('selectFilePage')
   if (Object.keys(filesInfo).length===0){
-      return (<Navigate to="/"/>)
+    return (<Navigate to="/"/>)
   }
-  const sendData = ()=>{
-      console.log(test)
-  }
+ 
  
 
   return (
     <div className=''>
         <NavBar></NavBar>
         <div className='flex justify-center mt-20 '>
-        <button onClick={sendData} className='bg-[#6D4AFF] text-white text-xl flex items-center px-5 py-2 font-bold rounded w-fit'> Get Similarities</button>
+        <GetSimilaritiesButton></GetSimilaritiesButton>
+
 
         </div>
         <div className='flex'>

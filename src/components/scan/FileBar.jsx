@@ -8,7 +8,7 @@ export default function FileBar(props) {
         <div className='flex relative z-0 bg-pink-200 rounded-lg'>
           <div className='flex items-center px-3 py-1 pr-5 bg-gray-100 relative left- z-30 rounded-lg border border-black rounded-r-none'>
             <FaPython className='mr-2' size={22} />
-            <p className=''>work/main.py</p>
+            <p className=''>NativeYoutube/Extensions/NSViewRepresentable+Extension.swift</p>
           </div>
           <div className='w-[79%] rounded-lg flex justify-between z-20 items-center bg-gray-100'>
             <div style={{ width: `${props.value}%` }} className={`bg-[#3B71CA] relative rounded-l-none rounded-lg z-10 h-[100%]`}></div>
