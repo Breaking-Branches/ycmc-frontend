@@ -13,7 +13,7 @@ function App() {
         <Routes>
 
           <Route path="/" element={<HomePage/>} />
-          <Route path="/scanned" element={<ScannedResultPage/>} />
+          <Route path="/scanned/:uuid" element={<ScannedResultPage/>} />
           <Route path="/select" element={<SelectFilesPage/>} />
         </Routes>
       </BrowserRouter>

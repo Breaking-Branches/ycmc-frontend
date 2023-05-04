@@ -6,6 +6,7 @@ import { initialSetup } from '../../redux/actions/selectedFileInfoAction'
 import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch} from 'react-redux'
 import { Navigate } from 'react-router-dom';
+import {url} from '../../../src/ConfigConstants'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import Loader from '../loader/Loader';
@@ -25,7 +26,7 @@ export default function ScanHomePage() {
     try {
       const response = await axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/files',
+        url: `${url}/files`,
         data: {
           repo1_url: url1,
           repo2_url: url2

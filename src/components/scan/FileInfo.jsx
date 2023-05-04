@@ -8,7 +8,7 @@ export default function FileInfo(props) {
   const [acc, setAcc] = useState(true);
   const dispatch = useDispatch();
   const filesInfo = useSelector((state) => state.filesInfoReducer)[props.reponame][props.extension];
-  const { name, icon } = extensionIcon(props.extension);
+  const { name, icon } = extensionIcon(props.extension,"mr-1");
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const handleSelectAll = (event) => {

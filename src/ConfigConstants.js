@@ -1,0 +1,1 @@
+export const url = "https://ycmc-backend.azurewebsites.net"

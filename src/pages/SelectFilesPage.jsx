@@ -6,19 +6,18 @@ import { Navigate } from 'react-router-dom';
 import {useSelector} from 'react-redux'
 import GetSimilaritiesButton  from '../components/buttons/GetSimilaritiesButton'
 
-export default function SelectFilesPage() {
+export default function SelectFilesPage(props) {
   const filesInfo = useSelector((state)=>state.filesInfoReducer);
   const repo1 = Object.keys(filesInfo)[0]
   const repo2 = Object.keys(filesInfo)[1]
-  console.log('selectFilePage')
   if (Object.keys(filesInfo).length===0){
     return (<Navigate to="/"/>)
   }
- 
+
  
 
   return (
-    <div className=''>
+    <div className='overflow-x-hidden'>
         <NavBar></NavBar>
         <div className='flex justify-center mt-20 '>
         <GetSimilaritiesButton></GetSimilaritiesButton>

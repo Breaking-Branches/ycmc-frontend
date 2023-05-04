@@ -4,22 +4,20 @@ import { IoIosShareAlt } from 'react-icons/io'
 import { AiOutlineDownload } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 export default function ScannedInfoDisplayed() {
-    const test = useSelector((state)=>state.selectedFileInfoReducer);
     const similarityData = useSelector((state)=>state.finalDataReducer);
-    const repo1 = Object.values(Object.values(test)[0])
-    .map((file)=>file.length)
-    .reduce((acc, val) => acc + val, 0);
-    const repo2 = Object.values(Object.values(test)[1])
-    .map((file)=>file.length)
-    .reduce((acc, val) => acc + val, 0);
-
+    const codeSnippets = similarityData.slice(1,similarityData.length)
+                .map(data=>{return data[0]['code_snippets'].length+data[1]['code_snippets'].length})
+                .reduce((acc, val) => acc + val, 0);
+    const averagePercentage = similarityData.slice(1,similarityData.length).map(data=>{
+        return data[0]['percentage']+data[1]['percentage']
+    }).reduce((acc, val) => acc + val, 0);
     return (
         <div className='flex justify-center pt-12 px-20 '>
 
             <div className='border w-[60vw] p-4 flex'>
                 <div className="flex shadow-xl flex-col justify-center items-center border-[10px] rounded-full border-[#6D4AFF] w-[120px] h-[120px]">
                     <h2 className='text-3xl font-bold'>{similarityData.length}</h2>
-                    <p>/{repo1+repo2}</p>
+                    <p>/{similarityData[0][2]}</p>
                 </div>
 
                 <div className='w-[75%] ml-20'>
@@ -64,18 +62,18 @@ export default function ScannedInfoDisplayed() {
                             </div>
                             <div className='flex mt-1'>
                                 <p className='mr-1 font-bold'>Similarities found: </p>
-                                <span className=''>{similarityData.length}</span>
+                                <span className=''>{similarityData.length-1}</span>
                             </div>
                         </div>
 
                         <div className='ml-10'>
                             <div className='flex mt-4'>
                                 <p className='mr-1 font-bold'>Average Percentage: </p>
-                                <span className=''>33%</span>
+                                <span className=''>{Math.round(averagePercentage/(similarityData.length*2))}%</span>
                             </div>
                             <div className='flex mt-1'>
                                 <p className='mr-1 font-bold'>Code Snippets:</p>
-                                <span className=''>110</span>
+                                <span className=''>{codeSnippets}</span>
                             </div>
                         </div>
                     </div>

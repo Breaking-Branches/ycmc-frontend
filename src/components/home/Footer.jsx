@@ -3,7 +3,7 @@ import {FaGithub} from 'react-icons/fa'
 import {AiFillLinkedin,AiOutlineTwitter} from 'react-icons/ai'
 export default function Footer() {
   return (
-    <div className='flex py-4 justify-center bg-gray-50 mt-[30.5vh] px-16 border-t-2'>
+    <div className='flex py-4 justify-center bg-gray-50 mt-[30.5vh] px-16  w-screen  border-t-2'>
 
 
         <a href="https://sankalpa.info.np" className='text-xl mr-4 font-bold'>

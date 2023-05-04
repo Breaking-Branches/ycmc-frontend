@@ -11,14 +11,26 @@ export function selectedFileInfoReducer(state=initial_state,action) {
             
             case UPDATE_FILES:
             const {reponame,extension,data} = action.payload
+            
+            if(data.length!==0){
             const sank = {
                 ...state,   
                 [reponame]:{
                     ...state[reponame],
-                    [extension]:data
+                    [extension]:data 
                 }
+            }
+            return sank
+        }
+        else{
+            const sank = {
+                ...state,   
+                [reponame]:Object.fromEntries(
+                    Object.entries(state[reponame]).filter(([key]) => key !== extension)
+                  )
             } 
             return sank
+        }
 
         default:
             return state
