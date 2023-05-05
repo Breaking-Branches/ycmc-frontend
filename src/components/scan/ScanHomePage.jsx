@@ -70,12 +70,12 @@ export default function ScanHomePage() {
           <Loader loading={isLoading}></Loader>
           :
 
-          <div className='flex mt-[40px] mb-12 justify-center'>
+          <div className='flex  mt-[40px] mb-12 justify-center'>
 
             <ToastContainer />
             <div className='w-[98%]  flex flex-col p-4'>
 
-              <div className='flex'>
+              <div className='flex items-center md:flex-row flex-col'>
                 <RepoURLInput repo="repo1" onChange={setRepoURL} placeHolder={'Breaking-Branches/BB-Offical-Site'}></RepoURLInput>
                 <RepoURLInput repo="repo2" onChange={setRepoURL} placeHolder={'Breaking-Branches/ycmc'}></RepoURLInput>
               </div>

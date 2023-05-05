@@ -8,13 +8,13 @@ export default function FileBar(props) {
   return (
 
     <div className='my-4'>
-      <div className="relative group ml-1">
+      <div className="relative group ml-1 ">
         <div className='flex relative z-0 rounded-lg'>
           <div className='flex items-center px-3 py-1 pr-5 bg-gray-100 relative left- z-30 rounded-lg border border-black rounded-r-none'>
             {icon}
             <p className=''>{shortenFilePath(props.filename)}</p>
           </div>
-          <div className='w-[79%] rounded-lg flex justify-between z-20 items-center bg-gray-100'>
+          <div className='w-[100%] rounded-lg flex justify-between z-20 items-center bg-gray-100'>
             <div style={{ width: `${props.value}%` }} className={`bg-[#3B71CA] relative rounded-l-none rounded-lg z-10 h-[100%]`}></div>
             <span className='absolute z-30 right-5'>
               {props.value}%

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 export default function ScannedFilesInfoContainer(props) {
   const filesInfo = useSelector((state) => state.filesInfoReducer)[props.reponame];
   return (
-    <div className='w-[48%] mt-5 mx-4 p-4 border '>
+    <div className='md:w-[48%] w-[90%] mt-5 mx-4 p-4 border '>
       <RepoProfile button='true' reponame={props.reponame}></RepoProfile>
       <div className=''>
 

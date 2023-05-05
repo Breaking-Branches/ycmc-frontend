@@ -19,17 +19,17 @@ export default function RepoProfile(props) {
   }
 
   return (
-    <div>
+    <div className=''>
 
       <div className='bg-[#d0bcf5] p-4 rounded'>
-        <div className='p-6 bg-white rounded flex justify-between items-center'>
-          <h2 className='text-lg uppercase flex font-bold'>
+        <div className='p-6 bg-white rounded flex flex-col md:flex-row justify-between items-center'>
+          <h2 className='md:text-lg uppercase flex font-bold'>
             <BiGitRepoForked size={30} className='mr-2' />
             {reponame}
           </h2>
           {props.button &&
 
-            <div className='flex'>
+            <div className='flex mt-3 md:mt-0'>
               <span className='px-3 py-2 mr-3 ml-3 flex items-center bg-[#2639ff] rounded text-white'>
                 <TfiFiles className='mr-2' />{files}
               </span>

@@ -3,21 +3,28 @@ import { IoCheckmarkDoneCircle } from 'react-icons/io5'
 import { IoIosShareAlt } from 'react-icons/io'
 import { AiOutlineDownload } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom';
 export default function ScannedInfoDisplayed() {
     const similarityData = useSelector((state)=>state.finalDataReducer);
+    const location = useLocation();
     const codeSnippets = similarityData.slice(1,similarityData.length)
                 .map(data=>{return data[0]['code_snippets'].length+data[1]['code_snippets'].length})
                 .reduce((acc, val) => acc + val, 0);
     const averagePercentage = similarityData.slice(1,similarityData.length).map(data=>{
         return data[0]['percentage']+data[1]['percentage']
     }).reduce((acc, val) => acc + val, 0);
+
+    const tweetText = `I checked Code Similarity between two github repo.
+${similarityData[0][0]},${similarityData[0][1]}
+It matched ${Math.round(averagePercentage/(similarityData.length*2))}%.Here's the result
+${window.location.hostname}${location.pathname}`
     return (
-        <div className='flex justify-center pt-12 px-20 '>
+        <div className='md:flex hidden justify-center pt-12 px-20 '>
 
             <div className='border w-[60vw] p-4 flex'>
                 <div className="flex shadow-xl flex-col justify-center items-center border-[10px] rounded-full border-[#6D4AFF] w-[120px] h-[120px]">
-                    <h2 className='text-3xl font-bold'>{similarityData.length}</h2>
-                    <p>/{similarityData[0][2]}</p>
+                    <h2 className='text-3xl font-bold'>{similarityData.length-1}</h2>
+                    <p>/{similarityData.length*2}</p>
                 </div>
 
                 <div className='w-[75%] ml-20'>
@@ -30,7 +37,7 @@ export default function ScannedInfoDisplayed() {
 
                         <div className='flex text-gray-600 '>
                             <div className="relative group mr-3 ">
-                                <a href="https://sankalpa.info.np" className='mr-3'>
+                                <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`} className='mr-3'>
                                     <IoIosShareAlt size={25} />
                                 </a>
                                 <span className="bg-gray-800 text-white text-sm rounded-lg px-2 py-1 absolute bottom-full left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100">

@@ -24,7 +24,7 @@ export default function SelectFilesPage(props) {
 
 
         </div>
-        <div className='flex'>
+        <div className='flex flex-col md:flex-row'>
             <ScannedFilesInfoContainer  reponame={repo1}></ScannedFilesInfoContainer>
             <ScannedFilesInfoContainer  reponame={repo2}></ScannedFilesInfoContainer>
         </div>

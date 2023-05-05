@@ -21,13 +21,13 @@ export default function SimilarFiles() {
   return (
     <>
 
-      <div className='px-16 mt-10 flex '>
+      <div className='px-16 mt-10 flex flex-col md:flex-row'>
 
-        <div className='w-[50%] mr-10'>
+        <div className='md:w-[50%] w-full mr-10 mb-2'>
 
           <RepoProfile key={Math.random()} reponame={reponame1}></RepoProfile>
         </div>
-        <div className='w-[50%]'>
+        <div className='md:w-[50%]'>
 
           <RepoProfile  key={Math.random()} reponame={reponame2}></RepoProfile>
         </div>
@@ -39,11 +39,11 @@ export default function SimilarFiles() {
       {
         test.slice(1,slicen).map((data)=>{
           return(
-          <div className='flex'>
-          <div className=' w-[50%] mr-10'>
+          <div className='flex flex-col border md:border-none p-2 mb-5 md:mb-0 md:flex-row'>
+          <div className=' md:w-[50%] w-full mr-10'>
             <FileBar key={Math.random()} reponame={reponame1} branch={data[0].branch} filename={data[0].filename} codeSnippetes={data[0].code_snippets} value={data[0].percentage}></FileBar>
           </div>
-          <div className=' w-[50%]'>
+          <div className='w-full md:w-[50%]'>
             <FileBar key={Math.random()} reponame={reponame2} branch={data[1].branch} filename={data[1].filename} codeSnippetes={data[1].code_snippets} value={data[1].percentage}></FileBar>
           </div>
           </div>)
