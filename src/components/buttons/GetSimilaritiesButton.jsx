@@ -1,25 +1,14 @@
 import React, { useState } from 'react'
-import { toast } from 'react-toastify';
 import Loader from '../loader/Loader';
 import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import { url} from '../../../src/ConfigConstants'
 import { getSimilarityAction } from '../../redux/actions/finalDataAction'
+import {warn} from '../../helper/warnningToast'
 export default function GetSimilaritiesButton() {
   const dispatch = useDispatch()
-  const warn = (msg) => {
-    toast.warn(`${msg}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
+
 
   const test = useSelector((state) => state.selectedFileInfoReducer);
   const filesInfo = useSelector((state) => state.filesInfoReducer);

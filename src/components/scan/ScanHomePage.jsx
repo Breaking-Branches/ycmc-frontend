@@ -3,12 +3,13 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import RepoURLInput from './RepoURLInput'
 import { filesInfoFetchAction } from '../../redux/actions/filesInfoFetchAction'
 import { initialSetup } from '../../redux/actions/selectedFileInfoAction'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import { useDispatch} from 'react-redux'
 import { Navigate } from 'react-router-dom';
 import {url} from '../../../src/ConfigConstants'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
+import {warn} from '../../helper/warnningToast'
 import Loader from '../loader/Loader';
 
 // make whole cloud like in coc
@@ -34,23 +35,21 @@ export default function ScanHomePage() {
       })
       setLoading(false)
       const data = await response.data
-      dispatch(filesInfoFetchAction(data))
-      dispatch(initialSetup(data))
-      setSucess(true)
+      if(data.error){
+        warn(data.error)
+        console.log()
 
+      }
+      else{
+
+        dispatch(filesInfoFetchAction(data))
+        dispatch(initialSetup(data))
+      }
+      setSucess(true)
     }
     catch (e) {
       setLoading(false)
-      toast.warn(e.response.data.error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      warn(e.response.data.error);
 
     }
   };
